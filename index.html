@@ -1,134 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#11110f">
-  <meta name="description" content="CenLane — a personal portfolio for ideas, projects, and what's next.">
-  <title>CenLane — Personal Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{--ink:#f5f1e9;--muted:#b7b3aa;--bg:#11110f;--panel:#1b1b18;--line:#35352f;--accent:#d5b77a;--max:1120px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.65}
-    a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
-    header{position:sticky;top:0;z-index:10;background:rgba(17,17,15,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
-    nav{height:76px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:1.45rem;font-weight:700;letter-spacing:.15em}.logo span{color:var(--accent)}
-    .links{display:flex;gap:30px;align-items:center;font-size:.9rem;color:var(--muted)}.links a:hover{color:var(--ink)}
-    .nav-cta,.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid var(--accent);border-radius:2px;color:var(--ink);font-size:.9rem;transition:.2s}
-    .nav-cta:hover,.button:hover{background:var(--accent);color:#15140f}
-    .menu{display:none;background:none;border:1px solid var(--line);color:var(--ink);padding:8px 11px;font:inherit}
-    .hero{padding:104px 0 90px;display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:center;min-height:610px}
-    .eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.2em;font-size:.75rem;font-weight:700}
-    h1,h2,h3,p{margin-top:0}h1,h2,.serif{font-family:"Playfair Display",serif;font-weight:500}
-    h1{font-size:clamp(3.3rem,7vw,6.2rem);line-height:1.03;letter-spacing:-.045em;margin:22px 0}
-    h1 em{font-style:normal;color:var(--accent)}.hero p{max-width:530px;color:var(--muted);font-size:1.08rem}
-    .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}.button.filled{background:var(--accent);color:#15140f}.button.filled:hover{background:#e6cb94}
-    .hero-art{position:relative;min-height:390px;display:grid;place-items:center}
-    .orb{width:min(340px,75vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#6f6044 0,#383329 28%,#24231e 58%,#141411 75%);border:1px solid #6b5c3e;box-shadow:0 0 90px #d5b77a12,inset -25px -30px 70px #0008;display:grid;place-items:center}
-    .orb-inner{width:68%;height:68%;border:1px solid #d5b77a88;border-radius:50%;display:grid;place-items:center;transform:rotate(-25deg)}
-    .orb-inner span{font-family:"Playfair Display",serif;font-size:5.4rem;color:var(--accent);transform:rotate(25deg);letter-spacing:-.1em}
-    .art-note{position:absolute;bottom:8px;right:0;color:var(--muted);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}
-    .rule{border:0;border-top:1px solid var(--line);margin:0}
-    section{padding:88px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:36px}
-    h2{font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.1;margin:12px 0}.section-head p{color:var(--muted);max-width:390px;margin-bottom:4px}
-    .about-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px}.about-mark{padding:28px;border:1px solid var(--line);background:linear-gradient(140deg,#202019,#141411);min-height:245px;display:flex;flex-direction:column;justify-content:space-between}
-    .about-mark strong{font-family:"Playfair Display",serif;font-size:3.4rem;color:var(--accent);font-weight:500}.about-mark small{color:var(--muted);letter-spacing:.13em;text-transform:uppercase}
-    .about-copy p{color:var(--muted);font-size:1.04rem}.about-copy p:first-child{color:var(--ink);font-size:1.2rem}
-    .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.project{border:1px solid var(--line);background:var(--panel);min-height:270px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .2s,border-color .2s}.project:hover{transform:translateY(-4px);border-color:#8b7954}
-    .project-number{color:var(--accent);font-size:.78rem;letter-spacing:.12em}.project h3{font-family:"Playfair Display",serif;font-size:1.65rem;font-weight:500;margin:20px 0 10px}.project p{color:var(--muted);font-size:.92rem}.tag{font-size:.72rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
-    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.skills span{border:1px solid var(--line);padding:10px 14px;color:var(--muted);font-size:.88rem}
-    .contact{background:#1a1915;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.contact p{color:var(--muted);max-width:460px}.contact-card{border:1px solid var(--line);padding:28px}.contact-card label{display:block;color:var(--muted);font-size:.8rem;margin-bottom:8px}.contact-card input,.contact-card textarea{width:100%;padding:13px;background:#11110f;border:1px solid var(--line);color:var(--ink);font:inherit;margin-bottom:14px;border-radius:0}.contact-card textarea{min-height:110px;resize:vertical}.contact-card input:focus,.contact-card textarea:focus{outline:1px solid var(--accent)}
-    footer{padding:25px 0;color:var(--muted);font-size:.82rem}.foot{display:flex;justify-content:space-between;gap:20px;align-items:center}.foot strong{color:var(--ink);letter-spacing:.13em}
-    @media(max-width:760px){.wrap{width:min(var(--max),calc(100% - 32px))}.links{display:none;position:absolute;top:76px;left:0;right:0;padding:22px;background:#171714;border-bottom:1px solid var(--line);flex-direction:column;gap:18px}.links.open{display:flex}.menu{display:block}.nav-cta{display:none}.hero{padding:70px 0 50px;grid-template-columns:1fr;gap:18px;min-height:auto}.hero-art{min-height:280px;grid-row:1}.orb{width:245px}.orb-inner span{font-size:4rem}.art-note{right:5px;bottom:0}section{padding:65px 0}.section-head{display:block}.section-head p{margin-top:18px}.about-grid,.contact-grid{grid-template-columns:1fr;gap:24px}.about-mark{min-height:180px}.project-grid{grid-template-columns:1fr}.project{min-height:220px}.foot{align-items:flex-start;flex-direction:column;gap:8px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CenLane | Personal Brand & Growth</title>
+<meta name="description" content="CenLane is a personal portfolio focused on learning, professional growth, meaningful ideas, and creating impact.">
+<meta name="theme-color" content="#111111">
+<style>
+:root{--dark:#111;--panel:#191919;--cream:#f4efe5;--gold:#d6b76c;--muted:#b9b4aa;--line:#35332e}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--dark);color:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}.container{width:min(1100px,90%);margin:auto}
+header{position:sticky;top:0;z-index:5;background:rgba(17,17,17,.96);border-bottom:1px solid var(--line)}
+nav{min-height:76px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-size:1.65rem;font-weight:800;letter-spacing:-1px}.logo span{color:var(--gold)}
+.nav-links{display:flex;flex-wrap:wrap;gap:20px;font-size:.85rem;color:var(--muted)}.nav-links a:hover{color:var(--gold)}
+.hero{min-height:78vh;display:flex;align-items:center;padding:90px 0}
+.eyebrow,.label{color:var(--gold);font-size:.75rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase}
+h1{margin:22px 0;font-size:clamp(2.7rem,7vw,5.7rem);line-height:1.08;letter-spacing:-2px}
+h1 em{color:var(--gold);font-family:Georgia,serif;font-weight:400}.hero-copy,.copy{max-width:760px;color:var(--muted)}
+.hero-copy{max-width:620px;font-size:1.05rem}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.btn{display:inline-block;padding:12px 20px;border:1px solid var(--gold);border-radius:3px;font-size:.9rem}
+.btn.primary{background:var(--gold);color:var(--dark);font-weight:bold}
+section{padding:80px 0;border-top:1px solid var(--line)}.label{margin-bottom:12px}
+h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.2;letter-spacing:-1px;margin-bottom:24px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:30px}
+.card,.journey,.contact-panel{background:var(--panel);border:1px solid var(--line);padding:27px;border-radius:4px}
+.number{color:var(--gold);font-size:.8rem;letter-spacing:2px}h3{font-size:1.2rem;margin:12px 0}.card p,.journey p{color:var(--muted);font-size:.95rem}
+.journey{margin-top:20px;border-left:2px solid var(--gold)}footer{padding:25px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+@media(max-width:600px){nav{align-items:flex-start;flex-direction:column;padding:14px 0}.nav-links{gap:10px 14px;font-size:.8rem}.hero{min-height:auto;padding:75px 0}section{padding:60px 0}.cards{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <nav aria-label="Main navigation">
-      <a class="logo" href="#home" aria-label="CenLane home">CEN<span>LANE</span></a>
-      <div class="links" id="navLinks">
-        <a href="#about">About</a><a href="#work">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
-      </div>
-      <a class="nav-cta" href="#contact">Let's connect <span>↗</span></a>
-      <button class="menu" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
-    </nav>
-  </div>
-</header>
+<header><nav class="container" aria-label="Main navigation">
+<a class="logo" href="#home">CenLane<span>.</span></a>
+<div class="nav-links"><a href="#home">Home</a><a href="#about">About</a><a href="#focus">My Focus</a><a href="#journey">My Journey</a><a href="#contact">Contact</a></div>
+</nav></header>
 <main>
-  <div class="wrap hero" id="home">
-    <div>
-      <div class="eyebrow">Personal portfolio · Ideas into action</div>
-      <h1>Thoughtful work.<br><em>Lasting impact.</em></h1>
-      <p>Welcome to CenLane — a space for my journey, projects, and ideas. I’m building with curiosity, intention, and a commitment to continuous growth.</p>
-      <div class="actions"><a class="button filled" href="#work">Explore my work <span>↘</span></a><a class="button" href="#contact">Get in touch</a></div>
-    </div>
-    <div class="hero-art" aria-label="Abstract CenLane monogram artwork">
-      <div class="orb"><div class="orb-inner"><span>CL</span></div></div>
-      <div class="art-note">Independent thinking · 01</div>
-    </div>
-  </div>
-  <hr class="rule">
-  <section id="about">
-    <div class="wrap">
-      <div class="section-head"><div><div class="eyebrow">A little about me</div><h2>Driven by curiosity.<br>Defined by growth.</h2></div><p>A personal introduction to the person behind CenLane.</p></div>
-      <div class="about-grid">
-        <div class="about-mark"><small>The CenLane perspective</small><strong>01 / ∞</strong><small>Learn · Build · Evolve</small></div>
-        <div class="about-copy">
-          <p>I believe meaningful progress starts with curiosity, consistency, and the courage to keep learning.</p>
-          <p>CenLane is my professional home on the web — a place to share what I’m learning, highlight projects I’m proud of, and connect with people who value thoughtful work and new ideas.</p>
-          <p><strong>Make this yours:</strong> replace this introduction with your real background, interests, goals, and the kind of opportunities you want to attract.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <hr class="rule">
-  <section id="work">
-    <div class="wrap">
-      <div class="section-head"><div><div class="eyebrow">Selected work</div><h2>Ideas in progress.</h2></div><p>Use this space to showcase projects, experiments, achievements, or case studies as you build your portfolio.</p></div>
-      <div class="project-grid">
-        <article class="project"><div><div class="project-number">PROJECT / 01</div><h3>Creative Direction</h3><p>A space for a branding, design, or content project. Add the challenge, your approach, and the result.</p></div><div class="tag">Brand · Concept</div></article>
-        <article class="project"><div><div class="project-number">PROJECT / 02</div><h3>Digital Presence</h3><p>Highlight a website, social media initiative, or digital project you helped bring to life.</p></div><div class="tag">Digital · Strategy</div></article>
-        <article class="project"><div><div class="project-number">PROJECT / 03</div><h3>Learning in Action</h3><p>Share a personal project, a new skill, or a meaningful milestone in your professional journey.</p></div><div class="tag">Growth · Practice</div></article>
-      </div>
-    </div>
-  </section>
-  <hr class="rule">
-  <section id="skills">
-    <div class="wrap">
-      <div class="eyebrow">Capabilities</div><h2>What I’m building.</h2>
-      <p style="color:var(--muted);max-width:600px">Edit these placeholders to reflect skills you can confidently demonstrate. Keep this section honest and specific.</p>
-      <div class="skills"><span>Communication</span><span>Creative Thinking</span><span>Research</span><span>Problem Solving</span><span>Digital Learning</span><span>Collaboration</span></div>
-    </div>
-  </section>
-  <section class="contact" id="contact">
-    <div class="wrap contact-grid">
-      <div><div class="eyebrow">Start a conversation</div><h2>Good things begin<br>with a hello.</h2><p>Interested in collaborating, exchanging ideas, or learning more about my work? Send a message and let's connect.</p><p style="font-size:.85rem">Before publishing, add your preferred email and social profile links.</p></div>
-      <form class="contact-card" id="contactForm">
-        <label for="name">Your name</label><input id="name" name="name" placeholder="Name" required>
-        <label for="email">Your email</label><input id="email" name="email" type="email" placeholder="you@example.com" required>
-        <label for="message">Your message</label><textarea id="message" name="message" placeholder="What would you like to discuss?" required></textarea>
-        <button class="button filled" type="submit">Prepare email ↗</button>
-        <p style="font-size:.75rem;margin:12px 0 0">This opens your email app; it does not send or store messages on this website.</p>
-      </form>
-    </div>
-  </section>
+<section class="hero" id="home" style="border-top:0"><div class="container">
+<p class="eyebrow">Personal Brand · Continuous Growth</p>
+<h1>Ideas into action.<br><em>Growth into impact.</em></h1>
+<p class="hero-copy">Welcome to CenLane — my personal space for learning, developing skills, exploring opportunities, and turning meaningful ideas into practical progress.</p>
+<div class="actions"><a class="btn primary" href="#journey">Explore My Journey ↗</a><a class="btn" href="#about">Get to Know Me</a></div>
+</div></section>
+<section id="about"><div class="container">
+<p class="label">01 / About Me</p><h2>Growing with purpose.<br>Building with intention.</h2>
+<div class="copy">
+<p>I am building my personal brand around continuous learning, self-development, and professional growth. I believe that progress comes from staying curious, developing useful skills, taking action, and learning from experience.</p><br>
+<p>Through CenLane, I aim to document my journey, share ideas, showcase my work, and connect with people who value learning, creativity, education, and meaningful opportunities.</p><br>
+<p>This is a space that will grow with me — reflecting what I learn, what I create, and the contribution I hope to make.</p>
+</div></div></section>
+<section id="focus"><div class="container">
+<p class="label">02 / My Focus</p><h2>What I am building.</h2>
+<p class="copy">My journey is about developing a strong foundation for long-term personal and professional growth.</p>
+<div class="cards">
+<article class="card"><span class="number">01</span><h3>Continuous Learning</h3><p>Exploring new knowledge, improving my understanding, and staying open to ideas that help me grow.</p></article>
+<article class="card"><span class="number">02</span><h3>Professional Development</h3><p>Building practical abilities, developing good habits, and preparing for future responsibilities and opportunities.</p></article>
+<article class="card"><span class="number">03</span><h3>Education & Opportunities</h3><p>Learning about educational pathways and opportunities that can broaden my knowledge and future possibilities.</p></article>
+<article class="card"><span class="number">04</span><h3>Networking & Ideas</h3><p>Building meaningful professional connections, exchanging ideas, and learning from other people's experiences.</p></article>
+</div></div></section>
+<section id="journey"><div class="container">
+<p class="label">03 / My Journey</p><h2>Progress in the making.</h2>
+<p class="copy">Every skill begins with learning, and every meaningful project begins with an idea. This section will grow as I complete projects, gain experience, and achieve milestones.</p>
+<div class="journey"><span class="number">CURRENT CHAPTER</span><h3>Learning, building, and documenting progress</h3><p>I am developing my professional presence and using CenLane as a place to organise my ideas, showcase completed work, and make my progress visible.</p></div>
+<div class="journey"><span class="number">COMING NEXT</span><h3>Projects & Achievements</h3><p>As I complete genuine projects and reach milestones, I will add examples of my work, what I learned, and the results I achieved.</p></div>
+</div></section>
+<section id="contact"><div class="container"><div class="contact-panel">
+<p class="label">04 / Let's Connect</p><h2>Good things begin<br>with a conversation.</h2>
+<p class="copy">Interested in exchanging ideas, sharing knowledge, or discussing a professional opportunity? I welcome thoughtful connections and conversations.</p>
+<div class="actions">
+<a class="btn primary" href="mailto:"ikechisom090@gmail.com">Email Me ↗</a>
+<a 
+  class="btn" href="https://www.linkedin.com/in/cen-lane-a54877382">LinkedIn Profile</a>
+</div></div></div></section>
 </main>
-<footer><div class="wrap foot"><strong>CENLANE</strong><span>Thoughtful work. Lasting impact.</span><span>© <span id="year"></span> CenLane</span></div></footer>
-<script>
-  const menuBtn=document.getElementById('menuBtn'), navLinks=document.getElementById('navLinks');
-  menuBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));});
-  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}));
-  document.getElementById('year').textContent=new Date().getFullYear();
-  document.getElementById('contactForm').addEventListener('submit',e=>{
-    e.preventDefault();
-    const name=document.getElementById('name').value.trim(), email=document.getElementById('email').value.trim(), message=document.getElementById('message').value.trim();
-    const recipient='YOUR_EMAIL_HERE';
-    if(recipient==='YOUR_EMAIL_HERE'){alert('Before using this form, open index.html and replace YOUR_EMAIL_HERE with your email address.');return;}
-    window.location.href='mailto:'+recipient+'?subject='+encodeURIComponent('CenLane website enquiry from '+name)+'&body='+encodeURIComponent(message+'\n\nFrom: '+name+'\nReply to: '+email);
-  });
-</script>
+<footer><div class="container foot"><a class="logo" href="#home">CenLane<span>.</span></a><p>© 2026 CenLane. Growing with purpose.</p></div></footer>
 </body>
 </html>
